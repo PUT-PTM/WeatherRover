@@ -5,3 +5,4 @@ startup*/
 *.cfg
 *.cproject
 *.project
+STM32/STM32F4DISCOVERY\.xml
