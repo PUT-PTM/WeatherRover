@@ -4,6 +4,13 @@ WheaterRover is a project build on STM32 of remote controlled car with wheather 
 
 ### Description:
 
+### Connections:
+Bluetooth:
+VCC	->	VCC
+GND	->	GND
+TX	->	PC11
+RX	->	PC10
+
 ### Tools:
 * Microcontroller STM32F407VG DISCOVERY
 * Bluetooth BLE - HM-10 MLT-BT05
