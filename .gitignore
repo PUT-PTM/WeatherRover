@@ -6,3 +6,12 @@ startup*/
 *.cproject
 *.project
 STM32/STM32F4DISCOVERY\.xml
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
