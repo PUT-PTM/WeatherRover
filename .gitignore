@@ -15,3 +15,16 @@ STM32/STM32F4DISCOVERY\.xml
 /build
 /captures
 .externalNativeBuild
+Android/\.idea/libraries/
+Android/\.idea/workspace\.xml
+Android/gradle/
+Android/build/
+Android/\.idea/
+Android/build\.gradle
+Android/gradle\.properties
+Android/gradlew
+Android/gradlew\.bat
+Android/local\.properties
+Android/settings\.gradle
+*.gradle
+Android/app/proguard-rules\.pro
