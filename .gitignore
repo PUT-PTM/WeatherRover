@@ -3,8 +3,6 @@ Debug*/
 startup*/
 *.LD
 *.cfg
-*.cproject
-*.project
 STM32/STM32F4DISCOVERY\.xml
 *.iml
 .gradle
