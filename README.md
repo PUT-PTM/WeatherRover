@@ -23,6 +23,22 @@ Bluetooth:
 * TX	->	PC11
 * RX	->	PC10
 
+l298n:
+* IN1 -> PD13
+* IN2 -> PD15
+* IN3 -> PD14
+* IN4 -> PD12
+* IN4 -> PD12
+
+HC SR04
+* TRIG -> PE4
+* ECHO -> PE5
+
+DHT11
+* OUT -> PA1
+* VCC -> 3V
+* GND -> GND
+
 ### How to compile:
 * System Workbench for STM32
 * Android Studio
