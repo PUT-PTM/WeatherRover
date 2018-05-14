@@ -23,7 +23,7 @@ int main(void) {
             d1=t*0.01724137931;
         }
         delay(1000);
-        if(d1<10){
+        if(d1<20){
         	stop=1;
 			GPIO_ResetBits(GPIOD,GPIO_Pin_14 | GPIO_Pin_15);
         }
@@ -45,28 +45,22 @@ void USART3_IRQHandler(void) {
 			if(stop==0){
 				GPIO_SetBits(GPIOD, GPIO_Pin_14 | GPIO_Pin_15);
 			}
-			Send("2017\r\n");
 			break;
 		case 'd':
 			GPIO_ResetBits(GPIOD,
 			GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 			GPIO_SetBits(GPIOD, GPIO_Pin_12| GPIO_Pin_13);
 
-			//test
-			Send("3016\r\n");
-
 			break;
 		case 'l':
 			GPIO_ResetBits(GPIOD,
 			GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 			GPIO_SetBits(GPIOD, GPIO_Pin_14|GPIO_Pin_13);
-			Send("3011.3\r\n");
 			break;
 		case 'r':
 			GPIO_ResetBits(GPIOD,
 			GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 			GPIO_SetBits(GPIOD, GPIO_Pin_12|GPIO_Pin_15);
-			Send("0106\r\n");
 			break;
 		case 's':
 			GPIO_ResetBits(GPIOD,
