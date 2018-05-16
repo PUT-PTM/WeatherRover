@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     volatile boolean stopWorker;
     UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     boolean connected = false;
-
+    boolean upDown = false;
+    char direction = 's';
+    boolean[] dir = {false,false,false,false};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,22 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 if (connected) {
                     switch (motionEvent.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            try {
-                                outputStream.write('l');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[0]=true;
                             break;
                         case MotionEvent.ACTION_UP:
-                            try {
-                                outputStream.write('s');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[0]=false;
                             break;
                     }
+                    Send();
                 } else {
                     Toast.makeText(getApplicationContext(), "Connect bluetooth", Toast.LENGTH_SHORT).show();
                 }
@@ -82,22 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 if (connected) {
                     switch (motionEvent.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            try {
-                                outputStream.write('r');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[1]=true;
                             break;
                         case MotionEvent.ACTION_UP:
-                            try {
-                                outputStream.write('s');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[1]=false;
                             break;
                     }
+                    Send();
                 } else {
                     Toast.makeText(getApplicationContext(), "Connect bluetooth", Toast.LENGTH_SHORT).show();
                 }
@@ -111,22 +95,13 @@ public class MainActivity extends AppCompatActivity {
                 if (connected) {
                     switch (motionEvent.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            try {
-                                outputStream.write('u');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[2]=true;
                             break;
                         case MotionEvent.ACTION_UP:
-                            try {
-                                outputStream.write('s');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[2]=false;
                             break;
                     }
+                    Send();
                 } else {
                     Toast.makeText(getApplicationContext(), "Connect bluetooth", Toast.LENGTH_SHORT).show();
                 }
@@ -140,22 +115,13 @@ public class MainActivity extends AppCompatActivity {
                 if (connected) {
                     switch (motionEvent.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            try {
-                                outputStream.write('d');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[3]=true;
                             break;
                         case MotionEvent.ACTION_UP:
-                            try {
-                                outputStream.write('s');
-                                outputStream.flush();
-                            } catch (IOException e) {
-                                Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
-                            }
+                            dir[3]=false;
                             break;
                     }
+                    Send();
                 } else {
                     Toast.makeText(getApplicationContext(), "Connect bluetooth", Toast.LENGTH_SHORT).show();
                 }
@@ -173,6 +139,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void Send() {
+        try {
+            if(dir[0]){
+                outputStream.write('l');
+                outputStream.flush();
+            }
+            else if(dir[1]){
+                outputStream.write('r');
+                outputStream.flush();
+            }
+            else if(dir[2]){
+                outputStream.write('u');
+                outputStream.flush();
+            }
+            else if(dir[3]){
+                outputStream.write('d');
+                outputStream.flush();
+            }
+            else{
+                outputStream.write('s');
+                outputStream.flush();
+            }
+
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public boolean initBT() {
@@ -251,9 +245,9 @@ public class MainActivity extends AppCompatActivity {
                                     handler.post(new Runnable() {
                                         public void run() {
                                             String tempH = data.substring(0, 2);
-                                            String tempT = data.substring(2);
-                                            textViewH.setText(tempH+"%");
-                                            textViewT.setText(tempT+"\u2103");
+                                            String tempT = data.substring(2, 5);
+                                            textViewH.setText(tempH + "%");
+                                            textViewT.setText(tempT + "\u2103");
                                         }
                                     });
                                 } else {

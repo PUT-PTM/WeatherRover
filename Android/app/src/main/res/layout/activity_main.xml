@@ -99,16 +99,15 @@
             android:id="@+id/buttonl"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:background="@drawable/b3"
             android:text="Left" />
-
 
         <Button
             android:id="@+id/buttonr"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:background="@drawable/b4"
             android:text="Right" />
     </LinearLayout>
