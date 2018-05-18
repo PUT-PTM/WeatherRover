@@ -1,17 +1,17 @@
 #include "stm32f4xx.h"
 #include "stm32f4_discovery.h"
 #include "dht11.h"
-
+#include "sd_card.h"
 
 double d1=0;
 int t;
 int stop=0;
 
 int counter = 0;
-int status;
 
 int main(void) {
-	DHT11_Init();
+	DHT11_init();
+	SD_init();
 	Init();
 	Init_bt();
 	hc_sr04_init();
@@ -75,7 +75,10 @@ void TIM4_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
 	{
-		status = DHT11_read_data();
+		measurement.status = DHT11_read_data();
+		DHT11_send_to_bluetooth();
+		SD_write_measurement("plik.txt");
+
 		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	}
 }

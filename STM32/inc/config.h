@@ -1,13 +1,3 @@
-/*
- * config.h
- *
- *  Created on: 21.04.2018
- *      Author: kuadam
- */
-
-#include "stm32f4xx.h"
-#include "stm32f4_discovery.h"
-
 #ifndef CONFIG_H_
 #define CONFIG_H_
 

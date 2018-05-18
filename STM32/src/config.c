@@ -1,3 +1,5 @@
+#include "stm32f4xx.h"
+#include "stm32f4_discovery.h"
 #include "config.h"
 
 void Init() {

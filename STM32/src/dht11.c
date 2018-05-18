@@ -5,9 +5,9 @@
 #include "dht11.h"
 #include "config.h"
 
-struct DHT11 measurement;
+DHT11 measurement;
 
-void DHT11_Init(){
+void DHT11_init(){
 	DHT11_TIM5_config();
 	TIM4_run_config();
 }
@@ -122,7 +122,6 @@ int DHT11_read_data()
 	DHT11_delay(35000);
 	measurement.temperature = bits[2];
 
-	DHT11_send_to_bluetooth();
 	return DHT11_SUCCESS;
 }
 
