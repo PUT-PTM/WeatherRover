@@ -9,7 +9,7 @@
 extern FATFS fatfs;
 extern FIL file;
 extern DIR directory;
-extern FRESULT fresult, fresult2, fresult3;
+extern FRESULT fresult;
 
 int SD_write_measurement(TCHAR* filename);
 int SD_init();

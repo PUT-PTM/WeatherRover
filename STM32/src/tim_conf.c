@@ -1,24 +1,18 @@
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_tim.h"
-#include "stm32f4xx_exti.h"
-#include "stm32f4xx_syscfg.h"
+#include "stm32f4_discovery.h"
 #include "misc.h"
 
 #include "tim_conf.h"
 
-void TIM4_config()
-{
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-
+void TIM_config(uint32_t RCC_APB1Periph, uint32_t TIM_Period,  uint16_t TIM_Prescaler, TIM_TypeDef* TIMx, FunctionalState NewState){
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph, ENABLE);
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Period = 49999;
-	TIM_TimeBaseStructure.TIM_Prescaler = 16799;
+	TIM_TimeBaseStructure.TIM_Period = TIM_Period;
+	TIM_TimeBaseStructure.TIM_Prescaler = TIM_Prescaler;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+	TIM_TimeBaseInit(TIMx, &TIM_TimeBaseStructure);
+	TIM_Cmd(TIMx, NewState);
 }
-
 void TIM4_interrupt_config()
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
@@ -32,11 +26,4 @@ void TIM4_interrupt_config()
 
 	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 	TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
-}
-
-void TIM4_run_config()
-{
-	TIM4_config();
-	TIM4_interrupt_config();
-	TIM_Cmd(TIM4, ENABLE);
 }

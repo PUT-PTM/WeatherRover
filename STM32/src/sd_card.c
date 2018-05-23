@@ -5,7 +5,7 @@
 
 FATFS fatfs;
 FIL file;
-FRESULT fresult;
+FRESULT fresult = -1;
 
 int SD_write_measurement(TCHAR* filename){
 	fresult = f_open(&file, filename, FA_OPEN_ALWAYS | FA_WRITE);

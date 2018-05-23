@@ -26,7 +26,7 @@ void delay_us( uint32_t us )
 	{
 		temp = SysTick->CTRL;
 	}
-	while( temp & 0x01 &&!( temp & ( 1 << 16 )));
+	while((temp & 0x01) &&!( temp & ( 1 << 16 )));
 	SysTick->CTRL = 0x00;
 	SysTick->VAL = 0x00;
 }  

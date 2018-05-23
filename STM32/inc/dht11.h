@@ -25,12 +25,10 @@ typedef struct DHT11{
 
 extern DHT11 measurement;
 
-void DHT11_init();
-void DHT11_TIM5_config();
 void DHT11_GPIOA_output_config();
 void DHT11_GPIOA_input_config();
-void DHT11_delay();
 void DHT11_delay(int time);
 int DHT11_read_data();
 void DHT11_send_to_bluetooth();
+
 #endif
